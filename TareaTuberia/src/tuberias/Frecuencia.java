@@ -1,6 +1,8 @@
 package tuberias;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -10,9 +12,12 @@ public class Frecuencia {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader bf = new BufferedReader(isr);
 
-        String lineaTeclado;
-
+        String lineaTeclado;        
+     
         try {
+        	File fichero = new File("save.txt");
+            FileWriter fw = new FileWriter(fichero,true);
+            
             while ((lineaTeclado = bf.readLine()) != null) {
                 int a = 0;
                 int e = 0;
@@ -29,9 +34,11 @@ public class Frecuencia {
                     }
                 }
 
-                System.out.println(lineaTeclado);
-                System.out.println(a +" " + e +" " + o);
+                System.out.println(lineaTeclado +" a:"+a +" e:" + e +" i:" + o);
+                fw.write(lineaTeclado +" a:"+a +" e:" + e +" i:" + o+"\n");
             }
+            fw.write("------------------------------\n");
+            fw.close();
         } catch (IOException ex) {
             System.err.println(ex.toString());
         } finally {
